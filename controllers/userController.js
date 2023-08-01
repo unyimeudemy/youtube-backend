@@ -5,7 +5,6 @@ import Videos from "../models/Videos.js";
 //UPDATE USER
 export const updateUser = async (req, res, next) => {
   if (req.params.ID === req.user.id) {
-    console.log(req.user);
     try {
       const updatedUser = await User.findByIdAndUpdate(
         req.params.ID,
@@ -94,7 +93,6 @@ export const unsubscribe = async (req, res, next) => {
 
 //LIKE A VIDEO
 export const like = async (req, res, next) => {
-  console.log("like video");
   const accountOwnerID = req.user.id;
   const videoID = req.params.videoID;
 
@@ -113,9 +111,6 @@ export const like = async (req, res, next) => {
 export const dislike = async (req, res, next) => {
   const accountOwnerID = req.user.id;
   const videoID = req.params.videoID;
-
-  console.log("req.user", req.user);
-  console.log("the id", accountOwnerID);
 
   try {
     await Videos.findByIdAndUpdate(videoID, {

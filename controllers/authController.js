@@ -41,7 +41,6 @@ export const signin = async (req, res, next) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
-    console.log(token);
 
     const passwordCompare = await bcrypt
       .compare(req.body.password, hash)
@@ -78,13 +77,9 @@ export const googleAuth = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (user) {
-      console.log("backend if");
-      console.log(user._id);
-
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN,
       });
-      //   console.log(`💥💥TOKEN:${token}`);
       window.localStorage.setItem("googleToken", token);
 
       //   const verifyToken = jwt.verify(
@@ -94,7 +89,6 @@ export const googleAuth = async (req, res, next) => {
       //       if (err) return next(createError(403, "token is not valid"));
       //     }
       //   );
-      //   console.log("💥💥", verifyToken);
 
       const cookieOptions = {
         expires: new Date(
@@ -103,9 +97,7 @@ export const googleAuth = async (req, res, next) => {
         // httpOnly: true,
       };
 
-      console.log("after cookie option");
       res.cookie("accessToken", token, cookieOptions);
-      console.log("after sending cookie");
       //////////////////////////////////////////////////////////////
 
       res.status(200).json({
@@ -138,10 +130,29 @@ export const googleAuth = async (req, res, next) => {
         data: savedUser._doc,
       });
       // .json(savedUser._doc);
-      console.log("backend else");
-      //   console.log(token);
     }
   } catch (err) {
     next(err.response);
   }
 };
+
+/////////////////////////////////////////////////////
+
+// //logout user
+// app.get("/api/logout", auth, function (req, res) {
+//   req.user.deleteToken(req.token, (err, user) => {
+//     if (err) return res.status(400).send(err);
+//     res.sendStatus(200);
+//   });
+// });
+
+// //delete token
+
+// userSchema.methods.deleteToken = function (token, cb) {
+//   var user = this;
+
+//   user.update({ $unset: { token: 1 } }, function (err, user) {
+//     if (err) return cb(err);
+//     cb(null, user);
+//   });
+// };

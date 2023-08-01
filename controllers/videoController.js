@@ -74,7 +74,6 @@ export const addView = async (req, res, next) => {
 
 // RETURN RANDOM VIDEOS
 export const random = async (req, res, next) => {
-  console.log("random queried");
   try {
     const video = await Video.aggregate([{ $sample: { size: 40 } }]);
     res.status(200).json(video);
@@ -104,7 +103,6 @@ export const sub = async (req, res, next) => {
         return Video.find({ userID: channelID });
       })
     );
-    console.log(list);
 
     res
       .status(200)

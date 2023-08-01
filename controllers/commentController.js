@@ -30,7 +30,6 @@ export const getComments = async (req, res, next) => {
   try {
     const comments = await Comments.find({ videoID: req.params.videoID });
     res.status(200).json(comments);
-    // console.log(comments);
   } catch (err) {
     next(err);
   }

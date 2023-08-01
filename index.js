@@ -36,7 +36,6 @@ app.use("/api/video", videoRoute);
 app.use("/api/comment", commentRoute);
 
 app.use((err, req, res, next) => {
-  //   console.log(req.cookies);
   const status = err.status || 500;
   const message = err.message || "something went wrong";
 

@@ -3,7 +3,6 @@ import { createError } from "./error.js";
 
 export const verifyToken = (req, res, next) => {
   //CHECKING IF THERE IS TOKEN
-  console.log(req.headers.authorization);
   let token;
   if ("accessToken" in req.cookies) {
     token = req.cookies.accessToken;
