@@ -13,6 +13,11 @@ const corsOptions = {
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
+// const corsOptions = {
+//   origin: "https://localhost:8000",
+//   credentials: true, //access-control-allow-credentials:true
+//   optionSuccessStatus: 200,
+// };
 
 dotenv.config({ path: "./config.env" });
 
