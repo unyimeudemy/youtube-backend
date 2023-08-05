@@ -9,12 +9,13 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 const corsOptions = {
-  origin: "https://youtube-frontend.onrender.com",
+  origin: "https://youtube-frontend-6ekz.onrender.com",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
+
 // const corsOptions = {
-//   origin: "https://localhost:8000",
+//   origin: "http://localhost:3000",
 //   credentials: true, //access-control-allow-credentials:true
 //   optionSuccessStatus: 200,
 // };
